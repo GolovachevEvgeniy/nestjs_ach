@@ -3,8 +3,8 @@ export class CreateRecordFiltersDtoDto {
   public pageSize: number;
 
   constructor({pageNumber = 0, pageSize = 31 }) {
-    this.pageNumber = +pageNumber;
-    this.pageSize = +pageSize
+    this.pageNumber = typeof pageNumber === 'string' ? +pageNumber : pageNumber;
+    this.pageSize = typeof pageSize === 'string' ? +pageSize : pageSize;
   }
 
   public get skip(): number {
