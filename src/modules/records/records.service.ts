@@ -50,12 +50,14 @@ export class RecordsService {
 
     const dataTotalCount = await this.repository
       .find()
-      .where('contentTypeId').equals(ContentTypesEnum[contentType])
+      .where('contentTypeId')
+      .equals(ContentTypesEnum[contentType])
       .countDocuments();
 
     const data = await this.repository
       .find()
-      .where('contentTypeId').equals(ContentTypesEnum[contentType])
+      .where('contentTypeId')
+      .equals(ContentTypesEnum[contentType])
       .populate('values')
       .sort({ createdAt: -1 })
       .skip(dataFilters.skip)
@@ -78,19 +80,22 @@ export class RecordsService {
 
     return await this.repository
       .findById(Types.ObjectId(id))
-      .where('contentTypeId').equals(ContentTypesEnum[contentType])
+      .where('contentTypeId')
+      .equals(ContentTypesEnum[contentType])
       .populate('values')
   }
 
   async remove(contentType: ContentTypesEnum, id: string) {
-    return await this.repository
+    await this.repository
       .findByIdAndDelete(Types.ObjectId(id))
-      .where('contentTypeId').equals(ContentTypesEnum[contentType]);
+      .where('contentTypeId')
+      .equals(ContentTypesEnum[contentType]);
   }
 
   async removeAll(contentType: ContentTypesEnum) {
     return await this.repository
       .remove()
-      .where('contentTypeId').equals(ContentTypesEnum[contentType]);
+      .where('contentTypeId')
+      .equals(ContentTypesEnum[contentType]);
   }
 }

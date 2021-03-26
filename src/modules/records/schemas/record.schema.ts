@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 import { Document, Types } from 'mongoose';
-import { RecordValue, RecordValueSchema } from '../../records-values/schemas/record-value.schema';
+import { RecordValue } from "../../records-values/schemas/record-value.schema";
 
 export type RecordDocument = Record & Document;
 
